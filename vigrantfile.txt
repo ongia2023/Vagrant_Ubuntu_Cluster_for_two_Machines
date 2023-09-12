@@ -1,0 +1,18 @@
+Vagrant.configure("2") do |config|
+  # Define the machines that you want to create
+  config.vm.define "master" do |master|
+    master.vm.box = "ubuntu/focal64"
+  end
+
+  config.vm.define "slave" do |slave|
+    slave.vm.box = "ubuntu/focal64"
+  end
+end
+
+/**Vagrant.configure("2") do |config| starts a Vagrant block.
+config.vm.define "master" do |master| defines a machine named master.
+master.vm.box = "ubuntu/focal64" specifies that the master machine will use the ubuntu/focal64 box.
+config.vm.define "slave" do |slave| defines a machine named slave.
+slave.vm.box = "ubuntu/focal64" specifies that the slave machine will use the ubuntu/focal64 box.
+#end ends the block for the master machine.
+end ends the block for the slave machine.**/

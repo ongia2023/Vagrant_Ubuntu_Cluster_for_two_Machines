@@ -1,0 +1,25 @@
+#!bin/bash
+
+#set the path  of the log files:
+cd $HOME/altschool
+
+#create the file
+touch Memory_Usage.log
+
+#hold  the file  name and in variables
+FILE=$HOME/altschool/Memory_Usage.log
+email="ongiaemma@gmail.com"
+
+#Check if it's midnight
+if [ $(date +%H) -eq 0 ]; then
+  #send the file as an attachment ot the email address
+  echo "This is the memory usage report for $(date +%Y-%m-%d)" | mutt -a $FILE -s "Memory Usage Report"  
+
+  #delete the file
+  rm  $FILE
+  echo "Date Time Total Used Free Shared Buffers Cached" > $FILE
+
+fi
+
+#write the memory usage into the file
+echo "$(date '+%Y-%m-%d %H:%M:%S') $(free -m |grep Mem: | sed 's/Mem://g')" >> $FILE
